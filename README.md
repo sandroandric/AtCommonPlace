@@ -14,6 +14,8 @@
   macOS 14 or later
 </p>
 
+<p align="center"><sub>Made by <a href="https://bysandro.com">Sandro</a></sub></p>
+
 <p align="center">
   <img src=".github/readme/hero.jpg" alt="CommonPlace: a collage of kept things over a dawn sky">
 </p>
@@ -133,4 +135,4 @@ The website runs on Vercel. Its counters need an Upstash Redis store (`KV_REST_A
 
 Type: [Fraunces](https://github.com/undercasetype/Fraunces) and [Inter](https://github.com/rsms/inter) in the app, Newsreader and Instrument Sans on the website, all under the SIL Open Font License (the licences are in `Resources/Fonts`). Models: Qwen 3.5 and EmbeddingGemma 2, run by [Ollama](https://ollama.com). The art is drawn in code, in SVG.
 
-CommonPlace is released under the [MIT License](LICENSE).
+CommonPlace is made by [Sandro](https://bysandro.com) and released under the [MIT License](LICENSE).
