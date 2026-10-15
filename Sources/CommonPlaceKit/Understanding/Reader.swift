@@ -28,16 +28,18 @@ public enum Models {
     /// EmbeddingGemma 2 runs from this Ollama.
     public static let minimumOllama = "0.40.0"
 
-    /// The vision model for this Mac: Qwen 3.5 4B from 16 GB, 2B below.
+    /// The vision model for this Mac: Google's Gemma 4, quantization-aware
+    /// builds.  E4B from 24 GB (the best titles; about 6.6 GB while it
+    /// reads), E2B below (as accurate in cp-eval, about 4.4 GB).
     public static func vision(ramGB: Int = Int(ProcessInfo.processInfo.physicalMemory >> 30)) -> String {
-        ramGB >= 16 ? "qwen3.5:4b" : "qwen3.5:2b-q4_K_M"
+        ramGB >= 24 ? "gemma4:e4b-it-qat" : "gemma4:e2b-it-qat"
     }
 
     /// The download sizes setup shows.
     public static let sizes: [String: String] = [
         "embeddinggemma-2:440m": "710 MB",
-        "qwen3.5:4b": "3.4 GB",
-        "qwen3.5:2b-q4_K_M": "1.9 GB",
+        "gemma4:e4b-it-qat": "6.2 GB",
+        "gemma4:e2b-it-qat": "4.3 GB",
     ]
 
     /// Whether Ollama `version` is at least `minimum` (numeric parts, a

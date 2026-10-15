@@ -43,7 +43,7 @@ Left ⌘ and right ⌘ together, on any window. The corners close around what yo
 
 <img src=".github/readme/reads.jpg" alt="A kept print annotated in pencil with its title, kind and topics">
 
-A small vision model in Ollama gives each capture a title, a summary, its kind and topics, and the passages worth keeping. It is checked against what is really on the screen, so nothing is invented. Similar things gather into collections that name themselves and rename as they grow.
+Google's [Gemma 4](https://deepmind.google/models/gemma/), running in Ollama on your Mac, gives each capture a title, a summary, its kind and topics, and the passages worth keeping. It is checked against what is really on the screen, so nothing is invented. Google's [EmbeddingGemma 2](https://deepmind.google/models/gemma/) places each one by how it looks and what it means, so similar things gather into collections that name themselves and rename as they grow.
 
 <br>
 
@@ -79,7 +79,7 @@ Once a day the app sends a check-in: a random install ID, the app and macOS vers
 
 1. [Download CommonPlace](https://atcommonplace.com/download) and move it to Applications.
 2. Install [Ollama](https://ollama.com/download) 0.40 or later.
-3. Open CommonPlace. Setup asks for Screen Recording (to take the picture) and Accessibility (to hear the keys and read a page's address), and downloads the two models, about 4 GB: Qwen 3.5 4B (2B on Macs with less than 16 GB) and EmbeddingGemma 2.
+3. Open CommonPlace. Setup asks for Screen Recording (to take the picture) and Accessibility (to hear the keys and read a page's address), and downloads two Google models: Gemma 4 (E4B, 6.2 GB, on Macs with 24 GB or more; E2B, 4.3 GB, below) and EmbeddingGemma 2 (710 MB).
 
 Settings has the capture keys (both ⌘, both ⌥, or ⌃⌥⌘K), the vision model, the library on disk, open at login, the daily check-in, and how to connect agents.
 
@@ -106,7 +106,7 @@ swift run cp-eval ~/screens manifest.tsv --query "volcano in japan" --query "cof
 | Keep | Both keys (`BothSidesGesture`), then the window the focused window overlaps most (`WindowChoice`), captured at full resolution with ScreenCaptureKit, with the page address from Accessibility | `Capture/` |
 | In a page | What is under the pointer: an image becomes a photo of its page, a video a recording with sound | `PageTarget`, `PagePointer`, `VideoRecorder` |
 | Read | Apple Vision text recognition | `Reader` |
-| Describe | Qwen 3.5 returns a title, summary, kind, tags, highlights and links, checked against the screen | `Describer` |
+| Describe | Gemma 4 returns a title, summary, kind, tags, highlights and links, checked against the screen | `Describer` |
 | Embed | EmbeddingGemma 2, twice: *look* (the picture with its text) for search, *meaning* (title and topics) for collections | `EmbeddingText` |
 | File | The nearest collection, or a new one with similar unsorted captures, named by the model as it grows | `Organizer`, `CollectionNamer` |
 | Find | The query against look and meaning (each query's stand-outs) and FTS5 words, merged by reciprocal rank; a collection mostly found is completed | `SearchMerge` |
@@ -133,6 +133,6 @@ The website runs on Vercel. Its counters need an Upstash Redis store (`KV_REST_A
 
 ## Credits
 
-Type: [Fraunces](https://github.com/undercasetype/Fraunces) and [Inter](https://github.com/rsms/inter) in the app, Newsreader and Instrument Sans on the website, all under the SIL Open Font License (the licences are in `Resources/Fonts`). Models: Qwen 3.5 and EmbeddingGemma 2, run by [Ollama](https://ollama.com). The art is drawn in code, in SVG.
+Type: [Fraunces](https://github.com/undercasetype/Fraunces) and [Inter](https://github.com/rsms/inter) in the app, Newsreader and Instrument Sans on the website, all under the SIL Open Font License (the licences are in `Resources/Fonts`). Models: Google's [Gemma 4 and EmbeddingGemma 2](https://deepmind.google/models/gemma/), run by [Ollama](https://ollama.com). Two Gemma models, side by side: one reads, one files and finds. The art is drawn in code, in SVG.
 
 CommonPlace is made by [Sandro](https://bysandro.com) and released under the [MIT License](LICENSE).

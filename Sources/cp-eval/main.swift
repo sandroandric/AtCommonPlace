@@ -1,7 +1,7 @@
 import CommonPlaceKit
 import Foundation
 
-// cp-eval <images dir> [manifest.tsv] [--ollama URL] [--query "text" ...]
+// cp-eval <images dir> [manifest.tsv] [--ollama URL] [--model name] [--query "text" ...]
 //
 // Keeps every PNG of the folder in a throwaway library (window title from
 // the manifest: "<file stem>\t<app> — <title>"), runs the real pipeline
@@ -17,8 +17,9 @@ func option(_ name: String) -> String? {
 var queries: [String] = []
 while let q = option("--query") { queries.append(q) }
 let host = URL(string: option("--ollama") ?? "http://127.0.0.1:11434")!
+let visionModel = option("--model") ?? Models.vision()
 guard let dir = args.first.map({ URL(fileURLWithPath: $0) }) else {
-    print("usage: cp-eval <images dir> [manifest.tsv] [--ollama URL] [--query text]...")
+    print("usage: cp-eval <images dir> [manifest.tsv] [--ollama URL] [--model name] [--query text]...")
     exit(2)
 }
 var titles: [String: (String, String)] = [:]
@@ -33,7 +34,7 @@ if args.count > 1, let manifest = try? String(contentsOfFile: args[1], encoding:
 
 let root = FileManager.default.temporaryDirectory.appendingPathComponent("cp-eval-\(UUID().uuidString)")
 let store = try LibraryStore(root: root)
-let library = Library(store: store, client: OllamaClient(host: host))
+let library = Library(store: store, client: OllamaClient(host: host), visionModel: visionModel)
 let files = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil)
     .filter { $0.pathExtension.lowercased() == "png" }.sorted { $0.path < $1.path }
 var stems: [String: String] = [:]
@@ -47,7 +48,7 @@ for (i, file) in files.enumerated() {
 }
 let started = Date()
 await library.work()
-print("Understood \(files.count) captures in \(Int(Date().timeIntervalSince(started))) s\n")
+print("Understood \(files.count) captures with \(visionModel) in \(Int(Date().timeIntervalSince(started))) s\n")
 
 let all = try store.captures(.recent, limit: 10_000).reversed()
 for c in all {

@@ -147,7 +147,7 @@ struct SettingsView: View {
 
     /// Installed models that can look at images, plus the recommended ones.
     private var visionChoices: [String] {
-        let known = ["qwen3.5:4b", "qwen3.5:2b-q4_K_M", "gemma4:12b-it-qat", "qwen3.5:9b"]
+        let known = ["gemma4:e2b-it-qat", "gemma4:e4b-it-qat", "gemma4:12b-it-qat"]
         let installed = installedModels.filter { name in
             !name.contains("embed") && (name.hasPrefix("qwen3.5") || name.hasPrefix("gemma") || name.contains("vl") || name.contains("llava"))
         }

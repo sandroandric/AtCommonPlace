@@ -194,8 +194,12 @@ final class SearchAndModelsTests: XCTestCase {
         XCTAssertTrue(Models.isVersion("0.40.4", atLeast: "0.40.0"))
         XCTAssertTrue(Models.isVersion("0.41.0-rc1", atLeast: "0.40.0"))
         XCTAssertFalse(Models.isVersion("0.30.9", atLeast: "0.40.0"))
-        XCTAssertEqual(Models.vision(ramGB: 24), "qwen3.5:4b")
-        XCTAssertEqual(Models.vision(ramGB: 8), "qwen3.5:2b-q4_K_M")
+        XCTAssertEqual(Models.vision(ramGB: 32), "gemma4:e4b-it-qat")
+        XCTAssertEqual(Models.vision(ramGB: 24), "gemma4:e4b-it-qat")
+        XCTAssertEqual(Models.vision(ramGB: 16), "gemma4:e2b-it-qat")
+        XCTAssertEqual(Models.vision(ramGB: 8), "gemma4:e2b-it-qat")
+        XCTAssertNotNil(Models.sizes[Models.vision(ramGB: 32)])
+        XCTAssertNotNil(Models.sizes[Models.vision(ramGB: 8)])
     }
 
     func testTheEmbeddingTextFollowsEmbeddingGemmasFormat() {

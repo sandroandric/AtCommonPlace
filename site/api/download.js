@@ -1,7 +1,7 @@
 // /download: count the download, then hand over the current DMG.
 const { redis, day, isBot } = require("./_store");
 
-const VERSION = "0.1.1";
+const VERSION = "0.1.2";
 const FILE = `/download/CommonPlace-${VERSION}.dmg`;
 
 module.exports = async (req, res) => {
