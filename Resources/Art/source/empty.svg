@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400">
+  <defs>
+    <filter id="torn" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" seed="7" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="8" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="3" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.6 0 0 0 1.75" result="mask"/>
+      <feComposite in="rough" in2="mask" operator="in"/>
+    </filter>
+    <filter id="gouache" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="5" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="7" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="2" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.4 0 0 0 2.2" result="mask"/>
+      <feComposite in="rough" in2="mask" operator="in"/>
+    </filter>
+    <filter id="pencil" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="13" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="8" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.4 0 0 0 2.0" result="mask"/>
+      <feComposite in="rough" in2="mask" operator="in"/>
+    </filter>
+    <filter id="dry" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.004 0.12" numOctaves="4" seed="21" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.09  0 0 0 0 0.08  0 0 0 0 0.07  12 0 0 0 -6.4"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+  <!-- Oat paper, torn, under a field of dry ink. -->
+  <g transform="rotate(-3 320 290)">
+    <rect x="80" y="236" width="480" height="110" fill="#E6DCC6" filter="url(#torn)"/>
+    <rect x="80" y="236" width="480" height="110" fill="#fff" filter="url(#dry)"/>
+  </g>
+  <!-- Yellow paper with a pencil scale. -->
+  <g transform="rotate(4 230 170)">
+    <rect x="96" y="70" width="230" height="190" fill="#EEC64A" filter="url(#torn)"/>
+    <g stroke="#4A3A16" stroke-width="1.6" stroke-linecap="round" filter="url(#pencil)" opacity="0.85">
+      <path d="M124 90 V230"/>
+      <path d="M118 102 H132 M120 114 H130 M118 126 H132 M120 138 H130 M118 150 H132 M120 162 H130 M118 174 H132 M120 186 H130 M118 198 H132 M120 210 H130 M118 222 H132"/>
+      <path d="M150 160 C190 158 230 161 268 158 M262 152 L268 158 L262 164"/>
+      <path d="M290 92 v16 M282 100 h16"/>
+    </g>
+  </g>
+  <!-- The sun, cut from clay paper. -->
+  <circle cx="420" cy="150" r="74" fill="#D27A56" filter="url(#gouache)"/>
+  <!-- An empty frame waiting: four ink corners. -->
+  <g fill="none" stroke="#1A1915" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#pencil)">
+    <path d="M330 96 V74 Q330 66 338 66 H360"/>
+    <path d="M480 66 H502 Q510 66 510 74 V96"/>
+    <path d="M510 216 V238 Q510 246 502 246 H480"/>
+    <path d="M360 246 H338 Q330 246 330 238 V216"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+.build/
+.swiftpm/
+dist/
+*.xcodeproj/
+DerivedData/
+.DS_Store
+# Working notes (local)
+PLAN.md
+LOG.md
+build/
+site/download/
+site/.vercel/
+.stats-token

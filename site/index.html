@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CommonPlace</title>
+<meta name="description" content="Press both ⌘ keys to keep anything on your screen. CommonPlace reads it, names it and files it on your Mac.">
+<meta property="og:title" content="CommonPlace">
+<meta property="og:description" content="Press both ⌘ keys to keep anything on your screen.">
+<meta property="og:image" content="https://atcommonplace.com/art/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1B2340">
+<link rel="icon" href="/art/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/art/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=Instrument+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- The sky: a slowly flowing, grained gradient behind everything, turning from dawn to night as you read. -->
+<canvas class="sky" id="sky" aria-hidden="true"></canvas>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="pencil" x="-5%" y="-20%" width="110%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="4" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="2.2" xChannelSelector="R" yChannelSelector="G" result="r"/><feTurbulence type="fractalNoise" baseFrequency="1.3" numOctaves="1" seed="9" result="s"/><feColorMatrix in="s" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.2 0 0 0 2.0" result="m"/><feComposite in="r" in2="m" operator="in"/></filter></svg>
+<div class="stars" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="CommonPlace">
+    <svg class="live-mark" viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
+      <defs><clipPath id="above-horizon"><rect x="0" y="0" width="100" height="63"/></clipPath></defs>
+      <g clip-path="url(#above-horizon)"><circle id="mark-sun" cx="50" cy="62" r="18" fill="#E3835C"/></g>
+      <path d="M33 62 H67" stroke="currentColor" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+      <path d="M16 36 V20 Q16 16 20 16 H36 M64 16 H80 Q84 16 84 20 V36 M84 64 V80 Q84 84 80 84 H64 M36 84 H20 Q16 84 16 80 V64" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>CommonPlace</span>
+  </a>
+  <a class="pill" href="#download">Download</a>
+</header>
+
+<main>
+
+<section class="opening" id="top" data-sky="dawn" aria-label="CommonPlace">
+  <div class="viewport-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="opening-grid">
+    <div class="opening-words">
+      <h1 class="display"><span class="line"><span>Keep what</span></span> <span class="line"><span><em>you see.</em></span></span></h1>
+      <p class="lede">Press both ⌘ keys to keep anything on your screen. CommonPlace reads it, names it and files it on your Mac.</p>
+      <div class="opening-actions">
+        <a class="pill pill-ivory" href="#download">Download for Mac</a>
+        <span class="opening-hint">macOS 14 or later</span>
+      </div>
+    </div>
+    <div class="collage" aria-hidden="true" data-depth="-0.08">
+      <img class="c-yellow" src="/art/scrap-yellow.svg" alt="">
+      <img class="c-ink" src="/art/scrap-ink.svg" alt="">
+      <figure class="c-print c-fuji"><img src="/art/mountain.svg" alt="">
+        <span class="frame"><i></i><i></i><i></i><i></i></span>
+      </figure>
+      <figure class="c-print c-cup" data-keep><img src="/art/croissant.svg" alt=""></figure>
+      <p class="c-note">kept, 20:14</p>
+      <svg class="c-note-line" viewBox="0 0 80 40"><path d="M76 6 C56 8 30 18 8 34 M8 34 l4 -12 M8 34 l12 -2"/></svg>
+    </div>
+  </div>
+  <img class="hills hills-dawn" src="/art/hills-dawn.svg" alt="" data-depth="0.05">
+</section>
+
+<section class="scene keep" id="keep" data-sky="morning">
+  <div class="keep-grid">
+    <div class="words reveal">
+      <h2 class="display">Keep it with <em>two keys.</em></h2>
+      <p>Press both ⌘ keys on any window. The corners close around what you’re looking at: the page, the photo under your pointer, or the video that’s playing, with its sound.</p>
+    </div>
+    <button class="keys" id="keys" type="button" aria-label="Press both command keys to keep the window in the picture">
+      <span class="keys-paper" aria-hidden="true"></span>
+      <span class="key"><span>⌘</span></span>
+      <span class="key"><span>⌘</span></span>
+      <svg class="key-ticks" viewBox="0 0 120 30" aria-hidden="true"><path d="M34 26 l-7 -14 M60 22 v-18 M86 26 l7 -14"/></svg>
+      <span class="pencil-note note-left" aria-hidden="true">left</span>
+      <span class="pencil-note note-right" aria-hidden="true">right</span>
+    </button>
+    <p class="try" aria-hidden="true">try it: press both ⌘ keys</p>
+    <figure class="mount reveal" id="mount" aria-hidden="true">
+      <div class="desk">
+        <img class="wallpaper" src="/art/wallpaper.svg" alt="">
+        <div class="menubar"><span><b>Safari</b> File Edit View</span><span class="mb-right"><img src="/art/mark-ink.png" alt="" width="13" height="13"> Wed 14 Oct&nbsp;20:14</span></div>
+        <div class="window">
+          <div class="window-bar"><i></i><i></i><i></i><span>en.wikipedia.org/wiki/Mount_Fuji</span></div>
+          <div class="window-body">
+            <div class="window-text"><b>Mount Fuji</b><s></s><s></s><s class="short"></s><s></s><s class="short"></s></div>
+            <img src="/art/mountain.svg" alt="">
+          </div>
+          <div class="corners"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="island">
+          <img src="/art/mountain.svg" alt="">
+          <div><p class="island-label">Kept</p><p class="island-title">Snow-capped Mount Fuji</p></div>
+          <span class="chip">Japan</span>
+        </div>
+      </div>
+      <figcaption class="margin-note">
+        <svg viewBox="0 0 120 70" aria-hidden="true"><path d="M112 10 C90 12 58 24 22 60 M22 60 l3 -14 M22 60 l14 -3"/></svg>
+        <span>named a moment later</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="scene reads" data-sky="golden">
+  <div class="reads-grid">
+    <div class="words reveal">
+      <h2 class="display">It reads and <em>files itself.</em></h2>
+      <p>A small vision model names each capture on your Mac. Similar things gather into collections that name themselves. Your captures never leave your Mac.</p>
+    </div>
+    <figure class="reading reveal" aria-hidden="true">
+      <div class="big-print" data-keep><img src="/art/mountain.svg" alt=""></div>
+      <svg class="annotations" viewBox="0 0 720 520">
+        <path class="a1" d="M548 70 C528 76 506 92 488 118 M488 118 l1 -13 M488 118 l12 -5"/>
+        <path class="a2" d="M548 272 C530 272 510 268 490 258 M490 258 l12 -1 M490 258 l7 10"/>
+        <ellipse class="a3" cx="128" cy="462" rx="62" ry="22"/>
+        <ellipse class="a3 b" cx="270" cy="464" rx="78" ry="22"/>
+        <ellipse class="a3 c" cx="412" cy="462" rx="62" ry="22"/>
+      </svg>
+      <p class="note n-title">Snow-capped<br>Mount Fuji</p>
+      <p class="note n-kind">a place, from wikipedia.org</p>
+      <p class="note n-tag" style="left:17.8%">japan</p><p class="note n-tag" style="left:37.5%">mountain</p><p class="note n-tag" style="left:57.2%">winter</p>
+      <p class="note n-time">read on this Mac in two seconds</p>
+    </figure>
+  </div>
+  <div class="table" aria-hidden="true">
+    <svg class="table-bracket" viewBox="0 0 900 40" preserveAspectRatio="none"><path d="M6 6 C6 24 20 26 450 26 C880 26 894 24 894 6 M450 26 v10"/></svg>
+    <p class="table-note">named by themselves</p>
+    <figure class="card" data-keep style="--sx:-44vw; --sy:40px; --sr:-14deg; --tx:-405px; --ty:0px; --tr:-5deg; --mx:-94px; --my:-170px; --mr:-5deg"><img src="/art/mountain.svg" alt=""></figure>
+    <figure class="card" data-keep style="--sx:-20vw; --sy:-70px; --sr:9deg; --tx:-392px; --ty:-12px; --tr:3deg; --mx:-88px; --my:-160px; --mr:3deg"><img src="/art/bamboo.svg" alt=""></figure>
+    <figure class="card" data-keep style="--sx:-30vw; --sy:130px; --sr:12deg; --tx:-128px; --ty:0px; --tr:4deg; --mx:94px; --my:-170px; --mr:4deg"><img src="/art/cup.svg" alt=""></figure>
+    <figure class="card" data-keep style="--sx:8vw; --sy:150px; --sr:-10deg; --tx:-118px; --ty:-12px; --tr:-3deg; --mx:100px; --my:-160px; --mr:-3deg"><img src="/art/croissant.svg" alt=""></figure>
+    <figure class="card" data-keep style="--sx:38vw; --sy:-30px; --sr:7deg; --tx:-124px; --ty:-22px; --tr:1deg; --mx:90px; --my:-150px; --mr:1deg"><img src="/art/lemons.svg" alt=""></figure>
+    <figure class="card" data-keep style="--sx:30vw; --sy:90px; --sr:-6deg; --tx:138px; --ty:0px; --tr:-4deg; --mx:-94px; --my:110px; --mr:-4deg"><img src="/art/starry.svg" alt=""></figure>
+    <figure class="card" data-keep style="--sx:-6vw; --sy:-100px; --sr:-8deg; --tx:150px; --ty:-12px; --tr:3deg; --mx:-88px; --my:120px; --mr:3deg"><img src="/art/planet.svg" alt=""></figure>
+    <figure class="card" data-keep style="--sx:22vw; --sy:-110px; --sr:14deg; --tx:410px; --ty:0px; --tr:5deg; --mx:94px; --my:110px; --mr:5deg"><img src="/art/bridge.svg" alt=""></figure>
+    <figure class="card" data-keep style="--sx:-36vw; --sy:-10px; --sr:4deg; --tx:398px; --ty:-12px; --tr:-2deg; --mx:100px; --my:120px; --mr:-2deg"><img src="/art/page.svg" alt=""></figure>
+    <p class="stack-label" style="--tx:-398px; --mx:-94px; --my:-70px">Japan <span>2</span></p>
+    <p class="stack-label" style="--tx:-124px; --mx:97px; --my:-70px">Kitchen notes <span>3</span></p>
+    <p class="stack-label" style="--tx:144px; --mx:-94px; --my:210px">Night sky <span>2</span></p>
+    <p class="stack-label" style="--tx:404px; --mx:97px; --my:210px">San Francisco <span>2</span></p>
+  </div>
+</section>
+
+<section class="scene find" data-sky="dusk">
+  <div class="words center reveal">
+    <h2 class="display">Find it by <em>what you remember.</em></h2>
+    <p>Search by how it looked, what it was about, or what was said in a video.</p>
+  </div>
+  <div class="search reveal" aria-hidden="true">
+    <div class="search-line"><span class="typed" data-text="a red bridge at sunset"></span><i class="caret"></i>
+      <svg class="scribble" viewBox="0 0 400 16" preserveAspectRatio="none"><path d="M4 10 C80 4 160 13 240 7 S360 6 396 9"/></svg></div>
+    <ol class="results">
+      <li class="result" data-keep style="--r:-3deg"><div class="r-print"><img src="/art/bridge.svg" alt=""></div><span class="r-title">Golden Gate at sunset</span><span class="why">by look and meaning</span></li>
+      <li class="result" data-keep style="--r:2deg"><div class="r-print"><img src="/art/page.svg" alt=""></div><span class="r-title">San Francisco walking notes</span><span class="why">by its words</span></li>
+      <li class="result" data-keep style="--r:-1deg"><div class="r-print"><img src="/art/starry.svg" alt=""></div><span class="r-title">Evening sky over the bay</span><span class="why">by its look</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="scene ask" data-sky="night">
+  <div class="words center reveal">
+    <h2 class="display">Your agents <em>can ask it.</em></h2>
+    <p>Connect Claude Code, Codex or any MCP client. They read the text, never the images.</p>
+  </div>
+  <div class="dialogue reveal" aria-hidden="true">
+    <p class="ask-line">“What was that espresso place I saved?”</p>
+    <svg class="star-path" viewBox="0 0 200 160"><path d="M100 4 C40 40 160 70 100 112 C80 126 96 144 100 156"/><circle cx="100" cy="4" r="2.5"/><circle cx="72" cy="46" r="2"/><circle cx="128" cy="78" r="2.5"/><circle cx="100" cy="112" r="2"/><circle cx="100" cy="156" r="2.5"/></svg>
+    <div class="answer-card" data-keep>
+      <img src="/art/cup-top.svg" alt="">
+      <p><b>Espresso in a white cup</b>, kept Tuesday, in Kitchen notes. Your note: “the one near the station.”</p>
+    </div>
+    <p class="cmd">claude mcp add commonplace -- /Applications/CommonPlace.app/Contents/MacOS/commonplace-mcp</p>
+  </div>
+</section>
+
+<section class="download" id="download" data-sky="deepNight">
+  <i class="shooting-star" aria-hidden="true"></i>
+  <div class="download-words reveal">
+    <img class="app-icon" src="/art/icon.png" alt="The CommonPlace icon" width="136" height="136">
+    <h2 class="display">Keep what <em>you see.</em></h2>
+    <a class="pill pill-ivory pill-large" id="get" href="/download" data-keep>Download for Mac</a>
+    <p class="meta">Version 0.1.1, for macOS 14 or later. The models run in Ollama, which is free; Setup installs them.</p>
+  </div>
+  <img class="hills hills-night" src="/art/hills-night.svg" alt="">
+  <footer class="footer">© 2026 CommonPlace</footer>
+</section>
+
+</main>
+
+<div class="finder" id="finder" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="finder-note">kept</span></div>
+<div class="grain" aria-hidden="true"></div>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="/main.js" defer></script>
+</body>
+</html>

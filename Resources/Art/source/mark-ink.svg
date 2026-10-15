@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="tile"><rect x="100" y="100" width="824" height="824" rx="185"/></clipPath>
+    <linearGradient id="sky" x1="0" y1="100" x2="0" y2="924" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A1020"/><stop offset="0.22" stop-color="#18284B"/><stop offset="0.42" stop-color="#3F5B95"/>
+      <stop offset="0.54" stop-color="#8592BC"/><stop offset="0.61" stop-color="#C7A29A"/><stop offset="0.655" stop-color="#EE9A5E"/>
+      <stop offset="0.665" stop-color="#E25A22"/><stop offset="0.69" stop-color="#5B2615"/><stop offset="0.78" stop-color="#1E1310"/>
+      <stop offset="1" stop-color="#110C0B"/>
+    </linearGradient>
+    <linearGradient id="sunwarm" x1="0" y1="496" x2="0" y2="646" gradientUnits="userSpaceOnUse">
+      <stop offset="0.45" stop-color="#F29A5C" stop-opacity="0"/><stop offset="1" stop-color="#F29A5C" stop-opacity="0.55"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="512" cy="640" r="330" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFB27A" stop-opacity="0.55"/><stop offset="1" stop-color="#FFB27A" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Brush streaks across the sky: stretched noise, faint. -->
+    <filter id="streaks" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0012 0.03" numOctaves="3" seed="3" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 0.97  0 0 0 0 0.92  2.4 0 0 0 -1.15"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <!-- Paper grain. -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="9" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 0.98  0 0 0 0 0.94  1.8 0 0 0 -0.72"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <!-- Gouache: an uneven edge and a dry, speckled body. -->
+    <filter id="gouache" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="5" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="14" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="2" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.4 0 0 0 2.2" result="mask"/>
+      <feComposite in="rough" in2="mask" operator="in"/>
+    </filter>
+    <!-- A loaded brush: wavering edges, dry where it thins. -->
+    <filter id="brush" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="11" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="7" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" result="speck"/>
+      <feColorMatrix in="speck" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -4 0 0 0 3.9" result="mask"/>
+      <feComposite in="rough" in2="mask" operator="in"/>
+    </filter>
+    <!-- Dry-brush ground below the horizon. -->
+    <filter id="ground" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.003 0.09" numOctaves="4" seed="21" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.32  0 0 0 0 0.22  9 0 0 0 -5.1"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+  <!-- The mark alone, in the icon's proportions: brushed corners, a gouache sun setting on a dry horizon. -->
+  <path d="M130 369 A126 126 0 0 1 382 369 Z" fill="#D27A56" filter="url(#gouache)"/>
+  <rect x="96" y="366" width="320" height="8" rx="4" fill="#1A1915" filter="url(#brush)"/>
+  <g fill="none" stroke="#1A1915" stroke-width="23" stroke-linecap="round" stroke-linejoin="round" filter="url(#brush)">
+    <path d="M56 145 V76 Q56 56 76 56 H145"/>
+    <path d="M367 56 H436 Q456 56 456 76 V145"/>
+    <path d="M456 367 V436 Q456 456 436 456 H367"/>
+    <path d="M145 456 H76 Q56 456 56 436 V367"/>
+  </g>
+</svg>
