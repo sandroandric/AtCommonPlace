@@ -117,6 +117,12 @@ p { margin: 0; }
 }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 400 22px/1 var(--serif); letter-spacing: -0.015em; }
 .live-mark { display: block; overflow: visible; }
+.nav-actions { display: flex; align-items: center; gap: 22px; }
+.nav-link { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font: 500 15px/1 var(--sans); opacity: 0.8; transition: opacity 0.25s var(--ease); }
+.nav-link:hover { opacity: 1; }
+.footer a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.footer { padding: 0 var(--gutter); text-wrap: balance; line-height: 1.5; }
+@media (max-width: 560px) { .nav-link span { display: none; } .nav-actions { gap: 16px; } }
 .pill {
   display: inline-flex;
   align-items: center;
@@ -540,6 +546,7 @@ p { margin: 0; }
   .viewport-frame i { width: 32px; height: 32px; }
   .opening { padding-bottom: calc(18vw + 24px); }
   .hills-dawn { width: 150vw; left: -30vw; }
+  .hills-night { width: 160vw; align-self: flex-start; margin-left: calc(var(--gutter) * -1 - 35vw); }
   .note { font-size: 14px; }
   .n-title { font-size: 17px; }
   .n-time { display: none; }
