@@ -4,7 +4,6 @@
     { "source": "/download", "destination": "/api/download" }
   ],
   "headers": [
-    { "source": "/art/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
     { "source": "/download/(.*).dmg", "headers": [{ "key": "Content-Type", "value": "application/x-apple-diskimage" }, { "key": "Content-Disposition", "value": "attachment" }] },
     { "source": "/stats", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }, { "key": "Referrer-Policy", "value": "no-referrer" }] },
     { "source": "/api/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }

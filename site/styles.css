@@ -176,18 +176,23 @@ p { margin: 0; }
 .opening-words .opening-actions { animation-delay: 0.55s; }
 @keyframes rise { to { opacity: 1; transform: none; } }
 
-/* The collage: yellow paper, a strip of dry ink, two prints; the
-   viewfinder's corners close on the first, as the app does. */
+/* The collage: yellow paper, a strip of dry ink, two prints and a mug of
+   coffee standing on them; the viewfinder's corners close on the first
+   print, as the app does. */
 .collage { position: relative; aspect-ratio: 1 / 0.92; width: 100%; max-width: 600px; justify-self: end; }
 .collage > * { position: absolute; margin: 0; opacity: 0; animation: lay 1.5s var(--ease) forwards;
   translate: calc(var(--px, 0) * var(--d, 10) * 1px) calc(var(--py, 0) * var(--d, 10) * 1px); }
-.c-yellow { --d: 8; } .c-ink { --d: 5; } .c-fuji { --d: 14; } .c-cup { --d: 22; } .c-note, .c-note-line { --d: 18; }
+.c-yellow { --d: 8; } .c-ink { --d: 5; } .c-fuji { --d: 14; } .c-tuscany { --d: 22; } .c-mug { --d: 28; } .c-note, .c-note-line { --d: 18; }
 .c-yellow { left: 4%; top: 4%; width: 52%; --r: -7deg; filter: saturate(0.72) brightness(1.04) drop-shadow(0 16px 26px rgba(70, 45, 40, 0.12)); animation-delay: 0.3s; }
 .c-ink { left: 22%; bottom: 3%; width: 70%; --r: 2deg; filter: contrast(0.55) brightness(1.12) drop-shadow(0 12px 22px rgba(70, 45, 40, 0.1)); animation-delay: 0.45s; }
 .c-print { padding: 2.2% 2.2% 6%; background: var(--paper); box-shadow: var(--lift-high); }
 .c-print img { width: 100%; }
 .c-fuji { left: 26%; top: 14%; width: 60%; --r: 3deg; animation-delay: 0.6s; }
-.c-cup { right: 0; bottom: 10%; width: 34%; --r: -5deg; animation-delay: 0.8s; }
+.c-tuscany { right: 0; bottom: 10%; width: 34%; --r: -5deg; animation-delay: 0.8s; }
+/* The mug's box is the mug (x 46-310, y 142-374 of its 16 0 300 430 canvas), so
+   the viewfinder closes on it; the steam above and its shadow below spill out. */
+.c-mug { left: -1.8%; bottom: -4.5%; width: 41.4%; aspect-ratio: 264 / 232; --r: -3deg; animation-delay: 1s; }
+.c-mug img { position: absolute; left: -11.36%; top: -61.21%; width: 113.64%; max-width: none; }
 .c-note { right: 2%; top: 0; font: italic 360 20px/1 var(--serif); color: var(--fg); --r: -3deg; animation-delay: 1.9s; }
 .c-note-line { right: 14%; top: 5%; width: 64px; fill: none; stroke: var(--fg); stroke-width: 1.8; stroke-linecap: round; filter: url(#pencil); --r: 0deg; animation-delay: 1.9s; }
 @keyframes lay {
@@ -208,6 +213,7 @@ p { margin: 0; }
 .scene {
   position: relative;
   min-height: 110vh;
+  overflow-x: clip; /* the filing cards start scattered past a phone's edge */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -391,7 +397,7 @@ p { margin: 0; }
 @media (max-width: 860px) {
   .opening { padding-top: 104px; }
   .opening-grid { grid-template-columns: 1fr; gap: 24px; }
-  .collage { order: -1; justify-self: center; max-width: 420px; }
+  .collage { order: -1; justify-self: center; max-width: 420px; margin-bottom: 28px; } /* the mug stands below its edge */
   .opening-words { text-align: left; }
   .table-bracket, .table-note { display: none; }
   .table { height: 680px; transform: none; margin: 56px auto 0; }
