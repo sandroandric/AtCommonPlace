@@ -149,6 +149,7 @@ p { margin: 0; }
   align-items: center;
   padding: 112px var(--gutter) calc(12vw + 40px);
   overflow: hidden;
+  overflow: clip visible; /* the hills are wider than the page, and their water fades out below it */
 }
 .opening-grid {
   position: relative;
@@ -455,6 +456,8 @@ p { margin: 0; }
 .viewport-frame i:nth-child(4) { left: var(--i); bottom: var(--i); border-right: 0; border-top: 0; border-bottom-left-radius: 10px; }
 @property --i { syntax: "<length>"; inherits: true; initial-value: 0px; }
 @keyframes frame-close { to { --i: 18px; } }
+/* In one column the words run across the foot of the first screen and the opening is taller than it: frame all of the opening instead. */
+@media (max-width: 860px) { .viewport-frame { height: auto; bottom: 0; } }
 
 /* Keep: the words, the keys on their paper laid over the desk print. */
 .keep-grid {
